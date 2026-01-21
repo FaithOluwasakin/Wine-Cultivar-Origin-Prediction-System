@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Breast Cancer Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <h2>Breast Cancer Prediction (Educational Use Only)</h2>
+    <form action="/predict" method="post">
+      {% for f in features %}
+      <div class="field">
+        <label>{{ f.replace('_', ' ').title() }}:</label>
+        <input step="any" name="{{ f }}" value="{{ inputs[f]|default('') if inputs is defined else '' }}" required />
+      </div>
+      {% endfor %}
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if result is defined %}
+    <div class="result">Prediction: {{ result }}</div>
+    {% endif %}
+  </body>
+</html>
