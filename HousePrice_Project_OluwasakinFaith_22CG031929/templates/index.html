@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h2>House Price Predictor</h2>
+      <form method="post">
+        {% for f in features %}
+        <label>{{ f }}
+          <input type="number" step="any" name="{{ f }}" required>
+        </label>
+        {% endfor %}
+        <button type="submit">Predict</button>
+      </form>
+      {% if result %}
+      <div class="result">{{ result }}</div>
+      {% endif %}
+    </div>
+  </body>
+</html>
